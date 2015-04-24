@@ -155,7 +155,7 @@ module.exports = function(grunt) {
       'concat',
       'uglify',
       'cssmin',
-      'mochaTest'
+      'mochaTest',
       'shell'
     } else {
       grunt.task.run([ 'server-dev' ]);
