@@ -14,9 +14,9 @@ module.exports = function(grunt) {
       },
       dist: {
         // the files to concatenate
-        src: ['public/**/*.js'],
+        src: ['public/client/*.js'],
         // the location of the resulting JS file
-        dest: 'public/dist/<%= pkg.name %>.js'
+        dest: 'public/dist/concated.js'
       }
     },
 
@@ -38,17 +38,22 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
-        ignores: [
-          'public/lib/**/*.js',
-          'public/dist/**/*.js'
-        ]
-      },
-      dist: {
-        files: {
-          'public/dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-        }
+      // options: {
+      //   banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
+      //   ignores: [
+      //     'public/lib/**/*.js',
+      //     'public/dist/**/*.js'
+      //   ]
+      // },
+      // dist: {
+      //   files: {
+      //     'public/dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+      //   }
+      // }
+      build: {
+        src: 'public/dist/concated.js',
+        dest: 'public/dist/uglified.js'
+
       }
     },
 
@@ -139,7 +144,7 @@ module.exports = function(grunt) {
     'uglify',
     'cssmin',
     'mochaTest',
-    'shell'
+    'nodemon'
 
   ]);
 
