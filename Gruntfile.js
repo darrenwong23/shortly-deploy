@@ -144,7 +144,7 @@ module.exports = function(grunt) {
     'uglify',
     'cssmin',
     'mochaTest',
-    'nodemon'
+    'shell'
 
   ]);
 
