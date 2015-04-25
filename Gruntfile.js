@@ -6,14 +6,15 @@ module.exports = function(grunt) {
     concat: {
       options: {
         // define a string to put between each file in the concatenated output
-        separator: ';',
-        ignores: [
-          'public/dist/**/*.js'
-        ]
+        separator: ';'
+        // ,
+        // ignores: [
+        //   'public/dist/**/*.js'
+        // ]
       },
       dist: {
         // the files to concatenate
-        src: ['public/**/*.js', 'test/**/*.js', '/app/**/*.js'],
+        src: ['public/**/*.js'],
         // the location of the resulting JS file
         dest: 'public/dist/<%= pkg.name %>.js'
       }
@@ -137,7 +138,8 @@ module.exports = function(grunt) {
     'concat',
     'uglify',
     'cssmin',
-    'nodemon'
+    'mochaTest',
+    'shell'
 
   ]);
 
@@ -152,16 +154,16 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', function(n) {
     // add your deploy tasks here
     if(grunt.option('prod')) {
-      'concat',
-      'uglify',
-      'cssmin',
-      'mochaTest',
-      'shell'
+      grunt.task.run([ 'build' ]);
+
+
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   } );
-
+// grunt.registerTask('deploy', [
+// +    // add your deploy tasks here
+// +  ]);
 
 
 };
